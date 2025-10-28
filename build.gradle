@@ -1,0 +1,24 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+group = 'io.github.fruit22'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.tngtech.archunit:archunit:1.4.1'
+}
+
+gradlePlugin {
+    plugins {
+        archChecker {
+            id = 'io.github.fruit22.arch-checker-plugin'
+            implementationClass = 'io.github.fruit22.arch.checker.ArchCheckerPlugin'
+        }
+    }
+}
