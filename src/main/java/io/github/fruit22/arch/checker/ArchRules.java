@@ -26,11 +26,13 @@ public class ArchRules {
                     classes()
                             .that().resideInAPackage("..port..")
                             .should().beInterfaces()
+                            .allowEmptyShould(true)
                             .because("Only interfaces should reside in the port package"),
 
                     classes()
                             .that().resideInAPackage("..usecase..")
                             .should().beAnnotatedWith("org.springframework.stereotype.Service")
+                            .allowEmptyShould(true)
                             .because("All use-case classes should be Spring @Service components"),
 
                     noClasses()
@@ -55,11 +57,13 @@ public class ArchRules {
                     classes()
                             .that().areAnnotatedWith("jakarta.persistence.Entity")
                             .should().haveSimpleNameEndingWith("Entity")
+                            .allowEmptyShould(true)
                             .because("All @Entity classes should have names ending with 'Entity'"),
 
                     classes()
                             .that().areAnnotatedWith("org.springframework.web.bind.annotation.RestController")
                             .should().haveSimpleNameEndingWith("Controller")
+                            .allowEmptyShould(true)
                             .because("All @RestController classes should have names ending with 'Controller'"),
 
                     classes()
@@ -70,7 +74,8 @@ public class ArchRules {
 
                     classes()
                             .that().areAnnotatedWith("org.springframework.context.annotation.Configuration")
-                            .should().haveSimpleNameEndingWith(".*(Config|Configuration)$")
+                            .should().haveSimpleNameEndingWith("Config")
+                            .orShould().haveSimpleNameEndingWith("Configuration")
                             .allowEmptyShould(true)
                             .because("All @Configuration classes should have names ending with 'Config' or 'Configuration'"),
 
